@@ -240,15 +240,15 @@ class AutoEntitiesEditor extends LitElement {
   _renderHelp() {
     return html`
       <div class="box">
-        <p>Auto entities</p>
+        <p>Auto named entities</p>
         <p>
           See
           <a
-            href="https://github.com/thomasloven/lovelace-auto-entities"
+            href="https://github.com/jharris4/lovelace-auto-named-entities"
             target="_blank"
             rel="noreferrer"
           >
-            auto-entities on github
+            auto-named-entities on github
           </a>
           for usage instructions.
         </p>
@@ -432,10 +432,10 @@ class AutoEntitiesEditor extends LitElement {
   }
 }
 
-customElements.define("auto-entities-editor", AutoEntitiesEditor);
+customElements.define("auto-named-entities-editor", AutoEntitiesEditor);
 (window as any).customCards = (window as any).customCards || [];
 (window as any).customCards.push({
-  type: "auto-entities",
+  type: "auto-named-entities",
   name: "Auto Entities",
   preview: false,
   description:

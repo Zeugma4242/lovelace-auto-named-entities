@@ -1,5 +1,5 @@
 {
-  "name": "auto-entities",
+  "name": "auto-named-entities",
   "private": true,
   "version": "1.13.0",
   "type": "module",

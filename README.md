@@ -1,4 +1,4 @@
-# auto-entities
+# auto-named-entities
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/hacs/integration)
 
@@ -9,7 +9,7 @@ For installation instructions [see this guide](https://github.com/thomasloven/ha
 ## Usage
 
 ```yaml
-type: custom:auto-entities
+type: custom:auto-named-entities
 card: <card>
 card_param: <card_param>
 entities:
@@ -81,9 +81,9 @@ The filter section `template` takes a jinja2 template which evaluates to a list 
 
 ## How it works
 
-`auto-entities` creates a list of entities by:
+`auto-named-entities` creates a list of entities by:
 
-1. Including every entity given in `entities:` (this allow nesting of `auto-entities`if you'd want to do that for some reason...)
+1. Including every entity given in `entities:` (this allow nesting of `auto-named-entities`if you'd want to do that for some reason...)
 2. Include every entity listed in a `filter.template` evaluation
 3. Include all entities that matches **ALL** options of **ANY** filter in the `filter.include` section. The same entity may be included several times by different filters.
 4. Remove all entities that matches **ALL** options on **ANY** filter in the `filter.exclude` section.
@@ -182,7 +182,7 @@ The example above matches lights with a `hs_color` saturation value greater than
 
 ### Stringification
 
-Some entity attributes are not text strings, but can be advanced structures. By starting the pattern to match with `$$` auto-entities will convert the attribute to JSON before comparing:
+Some entity attributes are not text strings, but can be advanced structures. By starting the pattern to match with `$$` auto-named-entities will convert the attribute to JSON before comparing:
 
 ```yaml
 filter:
@@ -195,7 +195,7 @@ The example above matches any entity that has a `entity_id` attribute - i.e. all
 
 ## Sorting entities
 
-Entities can be sorted, either on a filter-by-filter basis by adding a `sort:` option to the filter, or all at once after all filters have been applied using the `sort:` option of `auto-entities` itself.
+Entities can be sorted, either on a filter-by-filter basis by adding a `sort:` option to the filter, or all at once after all filters have been applied using the `sort:` option of `auto-named-entities` itself.
 
 Sorting methods are specified as:
 
@@ -228,7 +228,7 @@ In the `options:` option of the filters, the string `this.entity_id` will be rep
 Show all entities, except yahoo weather, groups and zones in a glance card:
 
 ```yaml
-type: custom:auto-entities
+type: custom:auto-named-entities
 card:
   type: glance
 filter:
@@ -242,7 +242,7 @@ filter:
 Show all gps `device_tracker`s with battery level less than 50:
 
 ```yaml
-type: custom:auto-entities
+type: custom:auto-named-entities
 card:
   type: entities
   title: Battery warning
@@ -259,7 +259,7 @@ filter:
 Show all lights that are on:
 
 ```yaml
-type: custom:auto-entities
+type: custom:auto-named-entities
 show_empty: false
 card:
   type: glance
@@ -276,7 +276,7 @@ filter:
 Also show all lights that are on, except the hidden ones:
 
 ```yaml
-type: custom:auto-entities
+type: custom:auto-named-entities
 show_empty: false
 card:
   type: entities
@@ -294,7 +294,7 @@ filter:
 Show everything that has "light" in its name, but isn't a light, and all switches in the living room:
 
 ```yaml
-type: custom:auto-entities
+type: custom:auto-named-entities
 card:
   type: entities
   title: Lights on
@@ -312,7 +312,7 @@ filter:
 List every sensor belonging to any iPhone:
 
 ```yaml
-type: custom:auto-entities
+type: custom:auto-named-entities
 card:
   type: entities
   title: Phones
@@ -325,7 +325,7 @@ filter:
 List the five last triggered motion sensors:
 
 ```yaml
-type: custom:auto-entities
+type: custom:auto-named-entities
 card:
   type: entities
 filter:
@@ -342,7 +342,7 @@ sort:
 Put all sensors in individual entity cards in a grid card:
 
 ```yaml
-type: custom:auto-entities
+type: custom:auto-named-entities
 card:
   type: grid
 card_param: cards
@@ -356,7 +356,7 @@ filter:
 Turn on scenes by clicking them:
 
 ```yaml
-type: custom:auto-entities
+type: custom:auto-named-entities
 card:
   type: glance
 filter:
@@ -374,7 +374,7 @@ filter:
 Example using templates:
 
 ```yaml
-type: custom:auto-entities
+type: custom:auto-named-entities
 card:
   type: entities
 filter:

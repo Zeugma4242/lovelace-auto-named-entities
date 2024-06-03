@@ -9,7 +9,7 @@ const dev = process.env.ROLLUP_WATCH;
 export default {
   input: "src/main.ts",
   output: {
-    file: "auto-entities.js",
+    file: "auto-named-entities.js",
     format: "es",
   },
   plugins: [
