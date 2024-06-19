@@ -43,6 +43,7 @@ export interface EntityNameConfig {
   text?: string;
   group?: string;
   area?: boolean;
+  device?: boolean;
   device_manufacturer?: boolean;
   device_model?: boolean;
 }

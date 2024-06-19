@@ -349,6 +349,16 @@ class AutoEntities extends LitElement {
           return "";
         };
 
+        const getEntDeviceName = ent => {
+          if (ent.device_id) {
+            const device = findDev(ent);
+            if (device && device.name) {
+              return device.name;
+            }
+          }
+          return "";
+        };
+
         const getEntDeviceManufacturerName = ent => {
           if (ent.device_id !== undefined) {
             const device = findDev(ent);
@@ -370,13 +380,15 @@ class AutoEntities extends LitElement {
         };
 
         const getEntNameForConfig = (ent: any, config: EntityNameConfig) => {
-          const { text, area, group, device_manufacturer, device_model } = config;
+          const { text, area, group, device, device_manufacturer, device_model } = config;
           if (text) {
             return text;
           } else if (area) {
             return getEntAreaName(ent);
           } else if (group) {
             return getEntGroupName(group);
+          } else if (device) {
+            return getEntDeviceName(ent);
           } else if (device_manufacturer) {
             return getEntDeviceManufacturerName(ent);
           } else if (device_model) {
