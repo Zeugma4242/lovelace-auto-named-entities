@@ -79,6 +79,102 @@ Special options:
 
 The filter section `template` takes a jinja2 template which evaluates to a list of entities or entity objects.
 
+### Names
+
+Names `transforms` have the following options:
+
+- `type:` The type of the transform. Supported types are `set`, `prefix`, `suffix` and `replace`.
+- `value:` For `set`, `prefix` and `suffix` types this specifies the new name value to use.
+- `match:` For `replace` type, this specifies the name value to be replaced.
+- `replacement:` For `replace` type, this specifies the name value to be used as the replacement (Defaults to empty string if not specified).
+- `trim:` Whether or not to trim whitespace from the name after performing a transform on it.
+
+The `value` or `match` and `replacement` options are all in term composed of the following sub options which are all optional although one must be specified:
+
+- `text:` A plain text string value for a name.
+- `group:` The entity id of a group whose name to use.
+- `area:` Whether to use the area name of the entity.
+- `device_manufacturer:` Whether to use the device manufacturer of the entity.
+- `device_model:` Whether to use the device manufacturer of the entity.
+
+Show a list of lights and set their name to a group:
+
+```yaml
+filter:
+  include:
+    domain: light
+names:
+  transforms:
+    - type: set
+      value:
+        group: light.my_light_group
+```
+
+Show a list of lights and set their name to their area:
+
+```yaml
+filter:
+  include:
+    domain: light
+names:
+  transforms:
+    - type: set
+      value:
+        area: true
+```
+
+Remove the room name from the names of a list of lights:
+
+```yaml
+filter:
+  include:
+    domain: light
+names:
+  transforms:
+    - type: replace
+      match:
+        area: true
+      # this is the same as:
+      # match:
+      #   area: true
+      # replace:
+      #   text: ""
+```
+
+Replace the room name with device model from the names of a list of lights:
+
+```yaml
+filter:
+  include:
+    domain: light
+names:
+  transforms:
+    - type: replace
+      match:
+        area: true
+      replace:
+        device_model: true
+```
+
+Remove area and then some text from the names of a list of lights:
+
+```yaml
+filter:
+  include:
+    domain: light
+names:
+  transforms:
+    - type: replace
+      match:
+        area: true
+    - type: replace
+      match:
+        text: Lights
+    - type: replace
+      match:
+        text: Light
+```
+
 ## How it works
 
 `auto-named-entities` creates a list of entities by:
